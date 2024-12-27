@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+p {
+    font-family: Montserrat;
+}
+
+.commonNav {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.commonUl {
+    display: flex;
+    gap: 30px;
+}
+
+.commonLi {
+    display: inline-block;
+}
+
+.commonA {
+    color: black;
+    text-decoration: none;
+    font-family: Montserrat;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.commonA:hover {
+    background-color: beige;
+    transition-delay: 50ms;
+    border-radius: 50%;
+}
+
+
+.gridWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.gridCell {
+    text-align: center;
+    border-radius: 5px;
+    width: 15px;
+    padding: 10px;
+    background-color: lightgray;
+}
+
+.markedCell {
+    background-color: darkgray;
+    color: white;
+}
