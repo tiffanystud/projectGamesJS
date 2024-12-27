@@ -44,15 +44,21 @@ p {
 .gridWrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 1px;
 }
 
 .gridCell {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
-    width: 15px;
     padding: 10px;
+    width: 20px;
     background-color: lightgray;
+    /** Fixa avstånder mellan cellerna **/
+}
+
+.gridCell:hover {
+    cursor: pointer;
 }
 
 .markedCell {

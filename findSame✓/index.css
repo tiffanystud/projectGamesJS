@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.wrapperP {
+    margin: 0;
+    display: inline-block;
+}
+
+.sumMessage,
+.message {
+    width: 50px;
+    height: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.markedCell {
+    background-color: #1fdc45;
+}
