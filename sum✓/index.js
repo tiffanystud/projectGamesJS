@@ -90,21 +90,32 @@ function sumGridCells(array) {
     sumMessage.textContent = sum;
 }
 
-function sumMarkedCells(markedCell) {
-    let sum = 0;
-    sum += markedCell.textContent;
-    markedMessage.textContent = sum;
+const sumArray = [];
+function sumMarkedCells(event) {
+
+    if (event.target.classList.contains("gridCell")) {
+
+        event.target.classList.toggle("markedCell");
+        const currentValue = Number(event.target.textContent);
+
+        if (event.target.classList.contains("markedCell")) {
+            sumArray.push(currentValue);
+        } else {
+            const index = sumArray.indexOf(currentValue);
+            if (index !== -1) {
+                sumArray.splice(index, 1);
+            }
+        }
+
+        let currentSum = 0;
+        for (let i = 0; i < sumArray.length; i++) {
+            currentSum += sumArray[i];
+        }
+        
+        markedMessage.textContent = currentSum;
+    }
 }
 
 gridWrapper.addEventListener("click", function (event) {
-    if (event.target.classList.contains("gridCell")) {
-        event.target.classList.toggle("markedCell");
-        if (event.target.classList.contains("gridCell")) {
-            sumMarkedCells(event.target);
-        }
-    }
-})
-
-
-
-
+    sumMarkedCells(event); 
+});
