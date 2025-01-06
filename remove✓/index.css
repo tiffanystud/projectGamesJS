@@ -22,6 +22,6 @@ button {
     text-align: center;
 }
 
-.markedCell {
-    background-color: #1fdc45;
+.markedNumber {
+    background-color: palevioletred;
 }
