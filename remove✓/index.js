@@ -16,14 +16,14 @@ const inputP  = document.createElement("p");
 inputP.classList.add("inputP", "wrapperP");
 inputP.textContent = "How many numbers in the grid?";
 
+const inputBtn = document.createElement("button");
+inputBtn.classList.add("inputBtn");
+inputBtn.textContent = "Create";
+
 const inputUser = document.createElement("input");
 inputUser.type = "number";
 inputUser.min = 0;
 inputUser.max = 300;
-
-const inputBtn = document.createElement("button");
-inputBtn.classList.add("inputBtn");
-inputBtn.textContent = "Create";
 
 inputWrapper.appendChild(inputP);
 inputWrapper.appendChild(inputUser);
@@ -35,21 +35,24 @@ markedWrapper.classList.add("markedWrapper", "wrapper");
 const numberBtn = document.createElement("button");
 numberBtn.textContent = "New Random Number";
 
-const inputUser = document.createElement("input");
-inputUser.type = "number";
-inputUser.min = 0;
-inputUser.max = 200;
-
 const removeBtn = document.createElement("button");
 removeBtn.textContent = "Remove";
+
+const removedDiv = document.createElement("div");
+removedDiv.style.width = "200px";
+removedDiv.style.border = "1px solid darkgray"; 
+removedDiv.style.borderRadius = "1px";
+removedDiv.style.textAlign = "center";
+removedDiv.textContent = "-";
 
 
 interactionWrapper.appendChild(markedWrapper);
 markedWrapper.appendChild(numberBtn);
 markedWrapper.appendChild(inputUser);
 markedWrapper.appendChild(removeBtn);
+markedWrapper.appendChild(removedDiv);
 
-
+bodyElem.appendChild(interactionWrapper);
 
 
 
