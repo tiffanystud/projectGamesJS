@@ -10,6 +10,10 @@
     display: inline-block;
 }
 
+button {
+    cursor: pointer;
+}
+
 .sumMessage,
 .message {
     width: 50px;
