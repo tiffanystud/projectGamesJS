@@ -1,4 +1,3 @@
-
 const bodyElem = document.body;
 const interactionWrapper = document.createElement("section");
 
@@ -7,7 +6,6 @@ interactionWrapper.style.display = "flex";
 interactionWrapper.style.flexDirection = "column";
 interactionWrapper.style.gap = "10px";
 bodyElem.appendChild(interactionWrapper);
-
 
 const inputWrapper = document.createElement("div");
 inputWrapper.classList.add("inputWrapper", "wrapper");
@@ -76,6 +74,7 @@ bodyElem.appendChild(gridWrapper);
 // ------------ functions ------------------
 inputBtn.addEventListener("click", function () {
     const maxValue = inputUser.value;
+    gridWrapper.innerHTML = "";
     const gridArray = createrNumberGrid(1, maxValue);
     repeatCounter(gridArray, maxValue);
 })

@@ -55,6 +55,7 @@ bodyElem.appendChild(gridWrapper);
 
 inputBtn.addEventListener("click", function () {
     const maxValue = inputUser.value;
+    gridWrapper.innerHTML = "";
     cellNumberArray = createrNumberGrid(1, maxValue);
     markedP.textContent = "Click on a number to find copies "
 })

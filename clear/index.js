@@ -49,6 +49,7 @@ bodyElem.appendChild(gridWrapper);
 
 inputBtn.addEventListener("click", function () {
     const maxValue = inputUser.value;
+    gridWrapper.innerHTML = "";
     createrNumberGrid(1, maxValue);
 })
 

@@ -78,6 +78,7 @@ inputBtn.addEventListener("click", function () {
     availableNrArray = [];
     randomNr = 0;
     const maxValue = inputUser.value;
+    gridWrapper.innerHTML = "";
     cellNumberArray = createrNumberGrid(1, maxValue);
 
     for (let number of cellNumberArray) {

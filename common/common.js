@@ -1,7 +1,12 @@
 
+const homeLink = document.createElement("a");
+homeLink.setAttribute("href", "/common/index.html");
+homeLink.innerHTML = "Home";
+homeLink.style.textAlign = "center";
+document.body.appendChild(homeLink);
 
 function createrNumberGrid(min, max) {
-    gridWrapper.innerHTML = "";
+
     const minNr = min;
     const maxNr = max;
     const cellNumberArray = [];
@@ -18,5 +23,5 @@ function createrNumberGrid(min, max) {
 }
 
 function createRandomNumber(min, max) {
-    return  Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }

@@ -10,14 +10,20 @@ body {
 p {
     font-family: Montserrat;
 }
+
+a {
+    font-family: Montserrat;
+    font-weight: 600;
+}
 .commonNav {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
 .commonUl {
     display: flex;
     gap: 30px;
+    padding: 0;
 }
 
 .commonLi {
@@ -27,8 +33,6 @@ p {
 .commonA {
     color: black;
     text-decoration: none;
-    font-family: Montserrat;
-    font-weight: 600;
     padding: 20px;
 }
 
@@ -37,7 +41,6 @@ p {
     transition-delay: 50ms;
     border-radius: 50%;
 }
-
 
 .gridWrapper {
     display: flex;
