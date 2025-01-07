@@ -74,6 +74,9 @@ let randomNr;
 const usedNumbers = [];
 
 inputBtn.addEventListener("click", function () {
+    gridWrapper.innerHTML = "";
+    availableNrArray = [];
+    randomNr = 0;
     const maxValue = inputUser.value;
     cellNumberArray = createrNumberGrid(1, maxValue);
 
@@ -103,6 +106,8 @@ randomNrBtn.addEventListener("click", function () {
 removeNrBtn.addEventListener("click", function () {
     if (availableNrArray.length >= 1) {
         getAllNumbers(randomNr, availableNrArray);
+    } else if (availableNrArray.length == 0) {
+        removedNrDiv.textContent = "Nothing to remove";
     }
 })
 
@@ -134,5 +139,4 @@ function getAllNumbers(number, array) {
         removedNrDiv.textContent = number + " removed " + counter + " times";
     }
 }
-
 // ------------ /functions ------------------
