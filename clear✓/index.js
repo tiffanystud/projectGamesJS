@@ -38,5 +38,41 @@ fillBtn.textContent = "Fill Cleared";
 
 interactionWrapper.appendChild(markedWrapper);
 markedWrapper.appendChild(fillBtn);
+
+const gridWrapper = document.createElement("article");
+gridWrapper.classList.add("gridWrapper", "wrapper");
+bodyElem.appendChild(gridWrapper);
 // ------------ /interaction ------------------
 
+
+// ------------ functions -----------------
+
+inputBtn.addEventListener("click", function () {
+    const maxValue = inputUser.value;
+    createrNumberGrid(1, maxValue);
+})
+
+gridWrapper.addEventListener("click", function (event) {
+    classListToggler(event);
+})
+
+function classListToggler(event) {
+    if (event.target.classList.contains("gridCell")) {
+        event.target.classList.toggle("markedClearCell");
+    }
+}
+
+fillBtn.addEventListener("click", function () {
+    const maxValue = inputUser.value;
+    const gridCellArray = document.querySelectorAll(".gridCell");
+    for (let cell of gridCellArray) {
+        if (cell.classList.contains("markedClearCell")) {
+               const newNumber = createRandomNumber(1, maxValue);
+               cell.textContent = newNumber;
+               cell.classList.toggle("markedClearCell");
+            }
+        }
+})
+
+
+// ------------ /functions ------------------

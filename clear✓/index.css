@@ -4,3 +4,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.gridCell:hover {
+    cursor: pointer;
+    background-color: orange;
+    color: transparent;
+}
+
+.markedClearCell {
+    background-color: red;
+    color: transparent;
+}
+

@@ -72,7 +72,6 @@ bodyElem.appendChild(gridWrapper);
 
 inputBtn.addEventListener("click", function () {
     const maxValue = inputUser.value;
-    console.log(maxValue + " maxValue inputBtn.addEventListener");
     const cellNumberArray = createrNumberGrid(1, maxValue);
     sumGridCells(cellNumberArray);
 })

@@ -1,6 +1,7 @@
 
 
 function createrNumberGrid(min, max) {
+    gridWrapper.innerHTML = "";
     const minNr = min;
     const maxNr = max;
     const cellNumberArray = [];
@@ -14,4 +15,8 @@ function createrNumberGrid(min, max) {
         gridWrapper.appendChild(gridCell);
     }
     return cellNumberArray;
+}
+
+function createRandomNumber(min, max) {
+    return  Math.floor(Math.random() * (max - min)) + min;
 }
