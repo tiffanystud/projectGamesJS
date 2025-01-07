@@ -71,3 +71,57 @@ const gridWrapper = document.createElement("article");
 gridWrapper.classList.add("gridWrapper", "wrapper");
 bodyElem.appendChild(gridWrapper);
 // ------------ /grid ------------------
+
+
+// ------------ functions ------------------
+inputBtn.addEventListener("click", function () {
+    const maxValue = inputUser.value;
+    const gridArray = createrNumberGrid(1, maxValue);
+    repeatCounter(gridArray, maxValue);
+})
+
+function repeatCounter(gridArray, maxValue) {
+    let maxCount = 0;
+    const counterObject = {};
+    const mostRepeatedArray = [];
+
+    for (let currentNumber of gridArray) {
+        if (counterObject[currentNumber]) {
+            counterObject[currentNumber] += 1;
+        } else {
+            counterObject[currentNumber] = 1
+        }
+
+        if (counterObject[currentNumber] > maxCount) {
+            maxCount = counterObject[currentNumber];
+        }
+    }
+
+    for (let number of gridArray) {
+        if (counterObject[number] === maxCount) {
+            mostRepeatedArray.push(number);
+        }
+    }
+
+    const messageArray = [];
+    for (let repeatNumber of mostRepeatedArray) {
+        if (!messageArray.includes(repeatNumber)) {
+            messageArray.push(repeatNumber);
+        }
+    }
+
+    repeatMessage.textContent = messageArray.join(", ") + " (repeated " + maxCount + " times)";
+
+    notUsedNumbers(gridArray, maxValue);
+}
+
+function notUsedNumbers(array, max) {
+    const notUsedArray = [];
+    for (let i = 1; i <= max; i++) {
+        if (!array.includes(i)) {
+            notUsedArray.push(i);
+        }
+    }
+    restMessage.textContent = notUsedArray.join(", ");
+}
+// ------------ /functions ------------------
