@@ -10,13 +10,11 @@ body {
 p {
     font-family: Montserrat;
 }
-
 .commonNav {
     margin-top: 50px;
     display: flex;
     justify-content: center;
 }
-
 .commonUl {
     display: flex;
     gap: 30px;
