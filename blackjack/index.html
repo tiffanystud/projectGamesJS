@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blackjack</title>
+        <link rel="stylesheet" href="/common/common.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        <main>
+            <h1>Blackjack</h1>
+            <section class="gameBoardWrapper">
+                <div class="dealerWrapper">
+                    <h3>Dealer</h3>
+                    <div class="dealerCards cards">
+                    </div>
+                    <p class="dealerScore scoreMessage">Score: 0</p>
+                </div>
+                <div class="userWrapper">
+                    <h3>Player</h3>
+                    <div class="userCards cards">
+                    </div>
+                    <p class="userScore scoreMessage">Score: 0</p>
+                </div>
+            </section>
+            <article class="controlWrapper">
+                <button class="hitBtn">Hit</button>
+                <button class="standBtn">Stand</button>
+                <button class="restartBtn">Restart</button>
+            </article>
+            <div class="messageElem">
+            </div>
+        </main>
+        <script src="/common/common.js"></script>
+        <script src="index.js"></script>
+    </body>
+
+</html>
