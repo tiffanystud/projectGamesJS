@@ -31,6 +31,16 @@ function createCardDeck() {
     }
 }
 
+function deckShuffle() {
+    for (let i = deckArray.length - 1; i > 0; i--) {
+        const j = createRandomNumber(1, i + 1);
+        // *** onödigt anrop?
+        const temporaryStoredValue = deckArray[i];
+        deckArray[i] = deckArray[j];
+        deckArray[j] = temporaryStoredValue;
+    }
+}
+
 function dealOneCard() {
     const drawnCard = deckArray.pop();
     return drawnCard;
@@ -54,6 +64,27 @@ function scoreOfCards(cards) {
         score -= 10;
     }
     return score;
+}
+
+function compareScoresFunc() {
+    if (userPoints > 21) {
+        messageElem.textContent = "User lost, scored over 21. Dealer won!";
+        gameOver = true;
+    } else if (dealerPoints > 21) {
+        messageElem.textContent = "Dealer lost, scored over 21. User won!";
+        gameOver = true;
+    } else if (dealerPoints >= 17 && userPoints <= 21) {
+        if (dealerPoints > userPoints) {
+            messageElem.textContent = "Dealer won!"
+        } else if (dealerPoints < userPoints) {
+            messageElem.textContent = "User won!"
+        } else {
+            messageElem.textContent = "The scores are the same. It's a tie!"
+        }
+        gameOver = true;
+    } else {
+        messageElem.textContent = "ERROR";
+    }
 }
 
 
