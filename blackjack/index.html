@@ -14,25 +14,32 @@
             <h1>Blackjack</h1>
             <section class="gameBoardWrapper">
                 <div class="dealerWrapper wrapper">
-                    <h3>Dealer</h3>
+                    <div>
+                        <h3>Dealer</h3>
+                        <p class="dealerScore scoreMessage">Score: 0</p>
+                    </div>
                     <div class="dealerCards cards">
                     </div>
-                    <p class="dealerScore scoreMessage">Score: 0</p>
                 </div>
                 <div class="userWrapper wrapper">
-                    <h3>Player</h3>
+                    <div>
+                        <h3>User</h3>
+                        <p class="userScore scoreMessage">Score: 0</p>
+                        <div class="userBalance">Balance: €1000</div>
+                    </div>
                     <div class="userCards cards">
                     </div>
-                    <p class="userScore scoreMessage">Score: 0</p>
+
                 </div>
             </section>
             <article class="controlWrapper wrapper">
                 <button class="hitBtn">Hit</button>
                 <button class="standBtn">Stand</button>
                 <button class="restartBtn">Restart</button>
+                <div class="messageElem">
+                </div>
             </article>
-            <div class="messageElem">
-            </div>
+    
         </main>
         <script src="/common/common.js"></script>
         <script src="index.js"></script>

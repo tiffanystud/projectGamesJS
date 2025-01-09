@@ -1,8 +1,8 @@
 body {
     display: flex;
     flex-direction: column-reverse;
-    height: 100vh;
 }
+
 h1 {
     text-align: center;
 }
@@ -22,5 +22,17 @@ h1 {
 
 .cards {
     display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.eachCard {
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 50px 5px;
+    width: 100px;
 }
