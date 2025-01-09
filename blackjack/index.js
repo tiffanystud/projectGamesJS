@@ -30,6 +30,12 @@ const messageElem = document.querySelector(".messageElem");
 // ------------- functions ------------------
 
 // För varje kort skapas ett objekt med egenskap suit och value
+function gameButtonsFunc(trueOrFalse) {
+    hitBtn.disabled = trueOrFalse;
+    standBtn.disabled = trueOrFalse;
+    restartBtn.disabled = trueOrFalse;
+}
+
 function gameStart() {
     userCardsArray = [dealOneCard(), dealOneCard()];
     dealerCardsArray = [dealOneCard(), dealOneCard()];
@@ -47,10 +53,12 @@ function gameStart() {
         messageElem.textContent = "User has blackjack! User won!";
         updateBalance(currentBet * 2.5);
         gameOver = true;
+        gameButtonsFunc(disable);
         return;
     } else if (isBlackjack(dealerCardsArray)) {
         messageElem.textContent = "Dealer has blackjack! Dealer won!";
         gameOver = true;
+        gameButtonsFunc(disable);
         return;
     }
 
@@ -62,7 +70,7 @@ function placeBet() {
     const betAmount = parseInt(betInput.value);
 
     if (betAmount > userBalance) {
-        alert("You don't have enough balance to place this bet."); //*** Byt ut till message */
+        messageElem.textContent = "You don't have enough balance to place this bet."
         return false;
     }
 
@@ -139,21 +147,26 @@ function compareScoresFunc() {
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!";
         gameOver = true;
+        gameButtonsFunc(true);
     } else if (dealerPoints > 21) {
         messageElem.textContent = "Dealer lost, scored over 21. User won!";
+        updateBalance(currentBet * 2);
         gameOver = true;
+        gameButtonsFunc(true);
     } else if (dealerPoints >= 17 && userPoints <= 21) {
         if (dealerPoints > userPoints) {
-            messageElem.textContent = "Dealer won!"
+            messageElem.textContent = "Dealer won!";
         } else if (dealerPoints < userPoints) {
-            messageElem.textContent = "User won!"
+            messageElem.textContent = "User won!";
+            updateBalance(currentBet * 2);
         } else {
-            messageElem.textContent = "The scores are the same. It's a tie!"
+            messageElem.textContent = "The scores are the same. It's a tie!";
+            updateBalance(currentBet);
         }
         gameOver = true;
-    } else {
-        messageElem.textContent = "ERROR";
+        gameButtonsFunc(true);
     }
+    gameOverChecker();
 }
 
 function isBlackjack(cards) {
@@ -185,18 +198,16 @@ function gameOverChecker() {
     if (userBalance <= 0) {
         messageElem.textContent = "Game over. User has run out of money."
         gameOver = true;
-        hitBtn.disabled = true;
-        standBtn.disabled = true;
-        restartBtn.disabled = true;
+        gameButtonsFunc(true);
     }
 }
-
 // ------------ /functions ------------------
 
 
 // ------------ interactions ------------------
 betBtn.addEventListener("click", function () {
     if (placeBet()) {
+        gameButtonsFunc(false);
         gameStart();
     }
 })
@@ -214,6 +225,7 @@ hitBtn.addEventListener("click", function () {
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!";
         gameOver = true;
+        gameButtonsFunc(true);
     }
 
     gameOverChecker();
@@ -244,3 +256,5 @@ restartBtn.addEventListener("click", function () {
 
 createCardDeck();
 deckShuffle();
+gameButtonsFunc(true);
+// ------------ /interactions ------------------
