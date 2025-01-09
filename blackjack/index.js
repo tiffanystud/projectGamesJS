@@ -44,21 +44,29 @@ function gameStart() {
     dealerPoints = scoreOfCards(dealerCardsArray);
 
     createCardsDOM(userCardsArray, userCardsElem);
-    createCardsDOM(dealerCardsArray, dealerCardsElem);
+    createCardsDOM(dealerCardsArray, dealerCardsElem, true); // *** Dölj dealerns andra kort
 
     userScoreElem.textContent = "Score: " + userPoints;
-    dealerScoreElem.textContent = "Score: " + dealerPoints;
+    dealerScoreElem.textContent = "Score: " + scoreOfVisibleCard(dealerCardsArray); // *** Visa endast poängen för det synliga kortet
 
     if (isBlackjack(userCardsArray)) {
         messageElem.textContent = "User has blackjack! User won!";
         updateBalance(currentBet * 2.5);
         gameOver = true;
-        gameButtonsFunc(disable);
+        gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints; 
+
         return;
     } else if (isBlackjack(dealerCardsArray)) {
         messageElem.textContent = "Dealer has blackjack! Dealer won!";
         gameOver = true;
-        gameButtonsFunc(disable);
+        gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints; 
+
         return;
     }
 
@@ -85,12 +93,17 @@ function updateBalance(amount) {
     balanceElem.textContent = "Balance: €" + userBalance;
 }
 
-function createCardsDOM(cards, cardElem) {
+function createCardsDOM(cards, cardElem, hideSecondCard = false) {
     cardElem.innerHTML = "";
-    for (let card of cards) {
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
         const newCard = document.createElement("div");
         newCard.classList.add("eachCard");
-        newCard.textContent = card.value + " of " + card.suit;
+        if (hideSecondCard && i === 1) {
+            newCard.textContent = "Hidden";
+        } else {
+            newCard.textContent = card.value + " of " + card.suit;
+        }
         cardElem.appendChild(newCard);
     }
 }
@@ -143,16 +156,39 @@ function scoreOfCards(cards) {
     return score;
 }
 
+function scoreOfVisibleCard(cards) {
+    let score = 0;
+    if (cards.length > 0) {
+        const card = cards[0]; // Endast det första kortet
+        if (["J", "Q", "K"].includes(card.value)) {
+            score += 10;
+        } else if (card.value === "A") {
+            score += 11;
+        } else {
+            score += parseInt(card.value);
+        }
+    }
+    return score;
+}
+
 function compareScoresFunc() {
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!";
         gameOver = true;
         gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints; 
+
     } else if (dealerPoints > 21) {
         messageElem.textContent = "Dealer lost, scored over 21. User won!";
         updateBalance(currentBet * 2);
         gameOver = true;
         gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints; 
+
     } else if (dealerPoints >= 17 && userPoints <= 21) {
         if (dealerPoints > userPoints) {
             messageElem.textContent = "Dealer won!";
@@ -165,6 +201,9 @@ function compareScoresFunc() {
         }
         gameOver = true;
         gameButtonsFunc(true);
+        
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints;
     }
     gameOverChecker();
 }
@@ -199,6 +238,9 @@ function gameOverChecker() {
         messageElem.textContent = "Game over. User has run out of money."
         gameOver = true;
         gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints;
     }
 }
 // ------------ /functions ------------------
@@ -224,8 +266,12 @@ hitBtn.addEventListener("click", function () {
 
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!";
+
         gameOver = true;
         gameButtonsFunc(true);
+
+        createCardsDOM(dealerCardsArray, dealerCardsElem);
+        dealerScoreElem.textContent = "Score: " + dealerPoints;
     }
 
     gameOverChecker();
@@ -236,6 +282,8 @@ standBtn.addEventListener("click", function () {
     if (gameOver) {
         return;
     }
+
+    createCardsDOM(dealerCardsArray, dealerCardsElem);
 
     while (dealerPoints < 17) {
         dealerCardsArray.push(dealOneCard());
