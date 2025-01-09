@@ -10,9 +10,9 @@ let dealerPoints = 0;
 let gameOver = false;
 
 const dealerCardsElem = document.querySelector(".dealerCards");
-const dealerScore = document.querySelector(".dealerScore");
+const dealerScoreElem = document.querySelector(".dealerScore");
 const userCardsElem = document.querySelector(".userCards");
-const userScore = document.querySelector(".userScore");
+const userScoreElem = document.querySelector(".userScore");
 
 const hitBtn = document.querySelector(".hitBtn");
 const standBtn = document.querySelector(".standBtn");
@@ -87,6 +87,26 @@ function compareScoresFunc() {
     }
 }
 
+function createCards(cards, cardElem) {
+    cardElem.innerHTML = "";
+    for (let card of cards) {
+        const newCard = document.createElement("div");
+        newCard.textContent = card.cardValues + " of " + card.cardSuits;
+        cardElem.appendChild(newCard);
+    }
+}
+
+
+function gameStart() {
+    userCardsArray = [dealOneCard(), dealOneCard()];
+    dealerCardsArray = [dealOneCard(), dealOneCard()];
+
+    userPoints = scoreOfCards(userCardsArray);
+    dealerPoints = scoreOfCards(dealerCardsArray);
+
+    createCards(userCardsArray, userCardsElem);
+    createCards(dealerCardsArray, dealerCardsElem);
+}
 
 // ------------ /functions ------------------
 
