@@ -88,7 +88,7 @@ function repeatCounter(gridArray, maxValue) {
         if (counterObject[currentNumber]) {
             counterObject[currentNumber] += 1;
         } else {
-            counterObject[currentNumber] = 1
+            counterObject[currentNumber] = 1;
         }
 
         if (counterObject[currentNumber] > maxCount) {
@@ -109,10 +109,30 @@ function repeatCounter(gridArray, maxValue) {
         }
     }
 
+
+    const gridCells = document.querySelectorAll(".gridCell");
+    const colorAssignments = {};
+    const colors = ["#E6E6FA", "#FFFFE0", "#ADD8E6", "#FFDAB9", "#FFC0CB", "#D8BFD8", "#90EE90", "#FFB6C1", "#B0E0E6", "#F5DEB3"];
+    let colorIndex = 0;
+
+    for (let cell of gridCells) {
+        for (let number of messageArray) {
+            if (cell.textContent == number) {
+                if (!colorAssignments[number]) {
+                    colorAssignments[number] = colors[colorIndex];
+                    colorIndex++;
+                }
+                cell.style.backgroundColor = colorAssignments[number];
+            }
+        }
+    }
+
     repeatMessage.textContent = messageArray.join(", ") + " (repeated " + maxCount + " times)";
 
     notUsedNumbers(gridArray, maxValue);
 }
+
+
 
 function notUsedNumbers(array, max) {
     const notUsedArray = [];
@@ -123,4 +143,5 @@ function notUsedNumbers(array, max) {
     }
     restMessage.textContent = notUsedArray.join(", ");
 }
+
 // ------------ /functions ------------------
