@@ -1,6 +1,7 @@
 body {
     display: flex;
     flex-direction: column-reverse;
+    background-color: rgb(24, 106, 72);
 }
 
 h1 {
@@ -20,9 +21,15 @@ h1 {
     gap: 10px;
 }
 
+.gameBoardWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -34,9 +41,44 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 50px 5px;
+    height: 60px;
     width: 100px;
 }
 
 .betAmount {
     color: gray;
+    height: 85%;
+}
+
+.restartBtn {
+    margin-right: 50px;
+}
+
+.interactionBtn {
+    flex-basis: 80px;
+}
+
+.messageElem {
+    margin-top: 40px;
+    padding: 30px;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.controlWrapper {
+    margin-top: 40px;
+    height: 50px;
+    padding: 30px;
+}
+
+.balanceElem{
+    color: rgb(180, 37, 15);
+    font-weight: bolder;
+    background-color: rgba(245, 245, 220, 0.741);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    padding: 0px 20px;
 }

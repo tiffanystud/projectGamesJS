@@ -91,7 +91,7 @@ function createCardsDOM(cards, cardElem, hideSecondCard = false) {
         const newCard = document.createElement("div");
         newCard.classList.add("eachCard");
         if (hideSecondCard && i === 1) {
-            newCard.textContent = "Hidden";
+            newCard.textContent = "HIDDEN";
         } else {
             newCard.textContent = card.value + " of " + card.suit;
         }
