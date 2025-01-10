@@ -1,33 +1,3 @@
-const bodyElem = document.body;
-const interactionWrapper = document.createElement("section");
-
-interactionWrapper.classList.add("interactionWrapper");
-interactionWrapper.style.display = "flex";
-interactionWrapper.style.flexDirection = "column";
-interactionWrapper.style.gap = "10px";
-bodyElem.appendChild(interactionWrapper);
-
-const inputWrapper = document.createElement("div");
-inputWrapper.classList.add("inputWrapper", "wrapper");
-interactionWrapper.appendChild(inputWrapper);
-
-const inputP = document.createElement("p");
-inputP.classList.add("inputP", "wrapperP");
-inputP.textContent = "How many numbers in the grid?";
-
-const inputUser = document.createElement("input");
-inputUser.type = "number";
-inputUser.min = 0;
-inputUser.max = 200;
-
-const inputBtn = document.createElement("button");
-inputBtn.classList.add("inputBtn");
-inputBtn.textContent = "Create";
-
-inputWrapper.appendChild(inputP);
-inputWrapper.appendChild(inputUser);
-inputWrapper.appendChild(inputBtn);
-
 const repeatWrapper = document.createElement("div");
 repeatWrapper.classList.add("repeatWrapper", "wrapper");
 
@@ -62,16 +32,9 @@ restMessage.style.textAlign = "center";
 interactionWrapper.appendChild(restWrapper);
 restWrapper.appendChild(restP);
 restWrapper.appendChild(restMessage);
-// ------------ /interaction ------------------
-
-// ------------ grid ------------------
-const gridWrapper = document.createElement("article");
-gridWrapper.classList.add("gridWrapper", "wrapper");
-bodyElem.appendChild(gridWrapper);
-// ------------ /grid ------------------
 
 
-// ------------ functions ------------------
+
 inputBtn.addEventListener("click", function () {
     const maxValue = inputUser.value;
     gridWrapper.innerHTML = "";
@@ -109,7 +72,6 @@ function repeatCounter(gridArray, maxValue) {
         }
     }
 
-
     const gridCells = document.querySelectorAll(".gridCell");
     const colorAssignments = {};
     const colors = ["#E6E6FA", "#FFFFE0", "#ADD8E6", "#FFDAB9", "#FFC0CB", "#D8BFD8", "#90EE90", "#FFB6C1", "#B0E0E6", "#F5DEB3"];
@@ -132,8 +94,6 @@ function repeatCounter(gridArray, maxValue) {
     notUsedNumbers(gridArray, maxValue);
 }
 
-
-
 function notUsedNumbers(array, max) {
     const notUsedArray = [];
     for (let i = 1; i <= max; i++) {
@@ -143,5 +103,3 @@ function notUsedNumbers(array, max) {
     }
     restMessage.textContent = notUsedArray.join(", ");
 }
-
-// ------------ /functions ------------------

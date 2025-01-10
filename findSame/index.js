@@ -2,34 +2,7 @@ let numberOfSame = 0;
 let currentNumber = 0;
 let cellNumberArray = [];
 
-const bodyElem = document.body;
-const interactionWrapper = document.createElement("section");
-interactionWrapper.classList.add("interactionWrapper");
-interactionWrapper.style.display = "flex";
-interactionWrapper.style.flexDirection = "column";
-interactionWrapper.style.gap = "10px";
-bodyElem.appendChild(interactionWrapper);
 
-const inputWrapper = document.createElement("div");
-inputWrapper.classList.add("inputWrapper", "wrapper");
-interactionWrapper.appendChild(inputWrapper);
-
-const inputP = document.createElement("p");
-inputP.classList.add("inputP", "wrapperP");
-inputP.textContent = "How many numbers in the grid?";
-
-const inputUser = document.createElement("input");
-inputUser.type = "number";
-inputUser.min = 0;
-inputUser.max = 300;
-
-const inputBtn = document.createElement("button");
-inputBtn.classList.add("inputBtn");
-inputBtn.textContent = "Create";
-
-inputWrapper.appendChild(inputP);
-inputWrapper.appendChild(inputUser);
-inputWrapper.appendChild(inputBtn);
 
 const markedWrapper = document.createElement("div");
 markedWrapper.classList.add("markedWrapper", "wrapper");
@@ -44,13 +17,7 @@ markedResetBtn.textContent = "Reset";
 interactionWrapper.appendChild(markedWrapper);
 markedWrapper.appendChild(markedP);
 markedWrapper.appendChild(markedResetBtn);
-// ------------ grid ------------------
-const gridWrapper = document.createElement("article");
-gridWrapper.classList.add("gridWrapper", "wrapper");
-bodyElem.appendChild(gridWrapper);
-// ------------ /grid ------------------
 
-// ------------ /functions ------------------
 
 
 inputBtn.addEventListener("click", function () {
@@ -69,13 +36,9 @@ function markedCells(event) {
 function findSameAsMarked(numPara, cellNumberArray) {
     const targetNumber = numPara;
     let counter = 0;
-    console.log(cellNumberArray + " arr")
-    console.log(targetNumber + " targetNumber")
 
 
     for (let number of cellNumberArray) {
-        console.log(number + " is the number");
-        console.log(typeof number + " type")
         if (number == targetNumber) {
             counter++;
         }
@@ -111,5 +74,4 @@ markedResetBtn.addEventListener("click", function () {
 gridWrapper.addEventListener("click", function (event) {
     markedCells(event);
     findSameAsMarked(event.target.textContent, cellNumberArray);
-});
-
+})

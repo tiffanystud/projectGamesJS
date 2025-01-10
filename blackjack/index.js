@@ -1,6 +1,11 @@
+const homeLink = document.createElement("a");
+homeLink.setAttribute("href", "/common/index.html");
+homeLink.innerHTML = "Home";
+homeLink.style.textAlign = "center";
+document.body.appendChild(homeLink);
 
 const deckArray = [];
-const cardSuits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+const cardSuits = ["♥︎", "♦︎", "♣︎", "♠︎"];
 const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 
 let userCardsArray = [];
@@ -27,9 +32,8 @@ const restartBtn = document.querySelector(".restartBtn");
 
 const messageElem = document.querySelector(".messageElem");
 
-// ------------- functions ------------------
 
-// För varje kort skapas ett objekt med egenskap suit och value
+
 function gameButtonsFunc(trueOrFalse) {
     hitBtn.disabled = trueOrFalse;
     standBtn.disabled = trueOrFalse;
@@ -93,7 +97,7 @@ function createCardsDOM(cards, cardElem, hideSecondCard = false) {
         if (hideSecondCard && i === 1) {
             newCard.textContent = "HIDDEN";
         } else {
-            newCard.textContent = card.value + " of " + card.suit;
+            newCard.textContent = card.value + " " + card.suit;
         }
         cardElem.appendChild(newCard);
     }
@@ -225,17 +229,16 @@ function runOutOfMoneyChecker() {
     }
 }
 
-function endGameRound(){
+function endGameRound() {
     gameOver = true;
     gameButtonsFunc(true);
 
     createCardsDOM(dealerCardsArray, dealerCardsElem);
     dealerScoreElem.textContent = "Score: " + dealerPoints;
 }
-// ------------ /functions ------------------
 
 
-// ------------ interactions ------------------
+
 betBtn.addEventListener("click", function () {
     if (placeBet()) {
         gameButtonsFunc(false);
@@ -282,11 +285,10 @@ standBtn.addEventListener("click", function () {
 })
 
 restartBtn.addEventListener("click", function () {
-    createCardDeck();
-    deckShuffle();
-    gameStart();
+    location.reload(true);
+    // ***
 })
-// ------------ /interactions ------------------
+
 
 
 createCardDeck();

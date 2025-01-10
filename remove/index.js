@@ -1,34 +1,3 @@
-// ------------ elements ------------------
-const bodyElem = document.body;
-
-const interactionWrapper = document.createElement("section");
-interactionWrapper.classList.add("interactionWrapper");
-interactionWrapper.style.display = "flex";
-interactionWrapper.style.flexDirection = "column";
-interactionWrapper.style.gap = "10px";
-bodyElem.appendChild(interactionWrapper);
-
-const inputWrapper = document.createElement("div");
-inputWrapper.classList.add("inputWrapper", "wrapper");
-interactionWrapper.appendChild(inputWrapper);
-
-const inputP = document.createElement("p");
-inputP.classList.add("inputP", "wrapperP");
-inputP.textContent = "How many numbers in the grid?";
-
-const inputBtn = document.createElement("button");
-inputBtn.classList.add("inputBtn");
-inputBtn.textContent = "Create";
-
-const inputUser = document.createElement("input");
-inputUser.type = "number";
-inputUser.min = 1;
-inputUser.max = 300;
-
-inputWrapper.appendChild(inputP);
-inputWrapper.appendChild(inputUser);
-inputWrapper.appendChild(inputBtn);
-
 const markedWrapper = document.createElement("div");
 markedWrapper.classList.add("markedWrapper", "wrapper");
 
@@ -58,17 +27,9 @@ markedWrapper.appendChild(randomNrDiv);
 markedWrapper.appendChild(removeNrBtn);
 markedWrapper.appendChild(removedNrDiv);
 bodyElem.appendChild(interactionWrapper);
-// ------------ / elements ------------------
 
 
-// ------------ grid ------------------
-const gridWrapper = document.createElement("article");
-gridWrapper.classList.add("gridWrapper", "wrapper");
-bodyElem.appendChild(gridWrapper);
-// ------------ /grid ------------------
 
-
-// ------------ functions ------------------
 let availableNrArray = [];
 let randomNr;
 const usedNumbers = [];
@@ -89,7 +50,7 @@ inputBtn.addEventListener("click", function () {
 randomNrBtn.addEventListener("click", function () {
     const min = 1;
     const max = availableNrArray.length;
-    randomNr = Math.floor((Math.random() * (max - min))) + min;
+    randomNr = Math.floor((Math.random() * (max - min))) + min; // ***
     if (!usedNumbers.includes(randomNr)) {
         randomNrDiv.textContent = randomNr;
         const gridCellsNode = document.querySelectorAll(".gridCell");
@@ -116,10 +77,11 @@ function getAllNumbers(number, array) {
     let counter = 0;
     for (let nr of array) {
         const currentNumber = Number(nr);
+        
         if (currentNumber == number) {
-            console.log("looped NR " + nr);
             counter++;
             const gridCellsNode = document.querySelectorAll(".gridCell");
+
             for (let node of gridCellsNode) {
                 if (node.textContent == currentNumber) {
                     const usedNumber = Number(node.textContent);
@@ -140,4 +102,3 @@ function getAllNumbers(number, array) {
         removedNrDiv.textContent = number + " removed " + counter + " times";
     }
 }
-// ------------ /functions ------------------
