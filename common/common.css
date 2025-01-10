@@ -1,25 +1,29 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url(Montserrat/Montserrat-VariableFont_wght.ttf);
+    font-family: "Prata";
+    src: url(fonts/Prata-Regular.ttf)
 }
+
 body {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 p {
-    font-family: Montserrat;
+    font-family: Prata;
 }
 
 a {
-    font-family: Montserrat;
+    font-family: Prata;
     font-weight: 600;
 }
+
 .commonNav {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
+
 .commonUl {
     display: flex;
     gap: 30px;

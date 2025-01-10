@@ -36,3 +36,7 @@ h1 {
     padding: 50px 5px;
     width: 100px;
 }
+
+.betAmount {
+    color: gray;
+}
