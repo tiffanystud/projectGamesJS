@@ -26,8 +26,6 @@ markedWrapper.appendChild(randomNrBtn);
 markedWrapper.appendChild(randomNrDiv);
 markedWrapper.appendChild(removeNrBtn);
 markedWrapper.appendChild(removedNrDiv);
-bodyElem.appendChild(interactionWrapper);
-
 
 
 let availableNrArray = [];

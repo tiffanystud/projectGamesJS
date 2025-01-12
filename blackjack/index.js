@@ -29,6 +29,7 @@ const betBtn = document.querySelector(".betBtn");
 const hitBtn = document.querySelector(".hitBtn");
 const standBtn = document.querySelector(".standBtn");
 const restartBtn = document.querySelector(".restartBtn");
+restartBtn.disabled = true;
 
 const messageElem = document.querySelector(".messageElem");
 
@@ -37,7 +38,7 @@ const messageElem = document.querySelector(".messageElem");
 function gameButtonsFunc(trueOrFalse) {
     hitBtn.disabled = trueOrFalse;
     standBtn.disabled = trueOrFalse;
-    restartBtn.disabled = trueOrFalse;
+    // restartBtn.disabled = trueOrFalse;
 }
 
 function gameStart() {
@@ -60,8 +61,13 @@ function gameStart() {
         return;
     } else if (isBlackjack(dealerCardsArray)) {
         messageElem.textContent = "Dealer has blackjack! Dealer won!";
+        restartBtn.disabled = false;
         endGameRound();
-
+        return;
+    } else if (isBlackjack(dealerCardsArray) && isBlackjack(userCardsArray)) {
+        messageElem.textContent = "Dealer and player has blackjack! It's a push!";
+        updateBalance(currentBet);
+        endGameRound();
         return;
     }
 
@@ -72,8 +78,14 @@ function gameStart() {
 function placeBet() {
     const betAmount = parseInt(betInput.value);
 
+    if (userBalance <= 0) {
+        messageElem.textContent = "You don't have enough balance to place a new bet.";
+        restartBtn.disabled = false;
+        return false;
+    }
+
     if (betAmount > userBalance) {
-        messageElem.textContent = "You don't have enough balance to place this bet."
+        messageElem.textContent = "You don't have enough balance to place this bet.";
         return false;
     }
 
@@ -168,7 +180,7 @@ function scoreOfVisibleCard(cards) {
 
 function compareScoresFunc() {
     if (userPoints > 21) {
-        messageElem.textContent = "User lost, scored over 21. Dealer won!";
+        messageElem.textContent = "User lost, scored over 21. Dealer won!!";
         endGameRound();
 
     } else if (dealerPoints > 21) {
@@ -194,7 +206,12 @@ function compareScoresFunc() {
 
         endGameRound();
     }
-    runOutOfMoneyChecker();
+
+    if (userBalance <= 0) {
+        messageElem.textContent += " Game over. You have run out of money.";
+        betBtn.disabled = true;
+        gameButtonsFunc(true); // Disable all buttons
+    }
 }
 
 function isBlackjack(cards) {
@@ -224,9 +241,9 @@ function isBlackjack(cards) {
 
 function runOutOfMoneyChecker() {
     if (userBalance <= 0) {
-        messageElem.textContent = "Game over. User has run out of money."
-        endGameRound();
+        gameButtonsFunc(true);
     }
+    restartBtn.disabled = false;
 }
 
 function endGameRound() {
@@ -244,6 +261,8 @@ betBtn.addEventListener("click", function () {
         gameButtonsFunc(false);
         gameStart();
     }
+    restartBtn.disabled = true;
+    betBtn.disabled = true;
 })
 
 hitBtn.addEventListener("click", function () {
@@ -258,12 +277,9 @@ hitBtn.addEventListener("click", function () {
 
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!";
-
+        restartBtn.disabled = false;
         endGameRound();
     }
-
-    runOutOfMoneyChecker();
-
 })
 
 standBtn.addEventListener("click", function () {
@@ -281,8 +297,12 @@ standBtn.addEventListener("click", function () {
     createCardsDOM(dealerCardsArray, dealerCardsElem);
     dealerScoreElem.textContent = "Score: " + dealerPoints;
 
+    betBtn.disabled = false;
+
     compareScoresFunc();
-})
+    runOutOfMoneyChecker();
+});
+
 
 restartBtn.addEventListener("click", function () {
     location.reload(true);
