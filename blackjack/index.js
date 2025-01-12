@@ -38,7 +38,12 @@ const messageElem = document.querySelector(".messageElem");
 function gameButtonsFunc(trueOrFalse) {
     hitBtn.disabled = trueOrFalse;
     standBtn.disabled = trueOrFalse;
-    // restartBtn.disabled = trueOrFalse;
+
+    if (!gameOver) {
+        console.log(betBtn.disabled + " before")
+        betBtn.disabled = false;
+        console.log(betBtn.disabled + " after")
+    }
 }
 
 function gameStart() {
@@ -49,14 +54,15 @@ function gameStart() {
     dealerPoints = scoreOfCards(dealerCardsArray);
 
     createCardsDOM(userCardsArray, userCardsElem);
-    createCardsDOM(dealerCardsArray, dealerCardsElem, true); // *** Dölj dealerns andra kort
+    createCardsDOM(dealerCardsArray, dealerCardsElem, true); 
 
     userScoreElem.textContent = "Score: " + userPoints;
-    dealerScoreElem.textContent = "Score: " + scoreOfVisibleCard(dealerCardsArray); // *** Visa endast poängen för det synliga kortet
+    dealerScoreElem.textContent = "Score: " + scoreOfVisibleCard(dealerCardsArray);
 
     if (isBlackjack(userCardsArray)) {
         messageElem.textContent = "User has blackjack! User won!";
         updateBalance(currentBet * 2.5);
+        betBtn.disabled = false;
         endGameRound();
         return;
     } else if (isBlackjack(dealerCardsArray)) {
@@ -102,14 +108,18 @@ function updateBalance(amount) {
 
 function createCardsDOM(cards, cardElem, hideSecondCard = false) {
     cardElem.innerHTML = "";
+
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
         const newCard = document.createElement("div");
         newCard.classList.add("eachCard");
-        if (hideSecondCard && i === 1) {
-            newCard.textContent = "HIDDEN";
+
+        if ((hideSecondCard) && (i === 1)) {
+            newCard.textContent = "♤ ♧ ♡ ♢";
+
         } else {
             newCard.textContent = card.value + " " + card.suit;
+
         }
         cardElem.appendChild(newCard);
     }
@@ -155,7 +165,6 @@ function scoreOfCards(cards) {
         }
     }
 
-    // Värdet av A bestäms till 11 eller 1 beroende på score
     if (includesAce && score > 21) {
         score -= 10;
     }
@@ -166,7 +175,8 @@ function scoreOfCards(cards) {
 function scoreOfVisibleCard(cards) {
     let score = 0;
     if (cards.length > 0) {
-        const card = cards[0]; // Endast det första kortet
+        const card = cards[0];
+
         if (["J", "Q", "K"].includes(card.value)) {
             score += 10;
         } else if (card.value === "A") {
@@ -182,7 +192,7 @@ function compareScoresFunc() {
     if (userPoints > 21) {
         messageElem.textContent = "User lost, scored over 21. Dealer won!!";
         endGameRound();
-
+        return
     } else if (dealerPoints > 21) {
         messageElem.textContent = "Dealer lost, scored over 21. User won!";
         updateBalance(currentBet * 2);
@@ -210,7 +220,7 @@ function compareScoresFunc() {
     if (userBalance <= 0) {
         messageElem.textContent += " Game over. You have run out of money.";
         betBtn.disabled = true;
-        gameButtonsFunc(true); // Disable all buttons
+        gameButtonsFunc(true); 
     }
 }
 
@@ -262,7 +272,6 @@ betBtn.addEventListener("click", function () {
         gameStart();
     }
     restartBtn.disabled = true;
-    betBtn.disabled = true;
 })
 
 hitBtn.addEventListener("click", function () {
@@ -306,9 +315,7 @@ standBtn.addEventListener("click", function () {
 
 restartBtn.addEventListener("click", function () {
     location.reload(true);
-    // ***
 })
-
 
 
 createCardDeck();

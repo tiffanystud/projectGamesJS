@@ -72,6 +72,10 @@ markedResetBtn.addEventListener("click", function () {
 })
 
 gridWrapper.addEventListener("click", function (event) {
+    if (event.target.classList.contains("wrapper")) {
+        return;
+    }
+
     markedCells(event);
     findSameAsMarked(event.target.textContent, cellNumberArray);
 })

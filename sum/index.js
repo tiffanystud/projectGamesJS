@@ -82,5 +82,4 @@ gridWrapper.addEventListener("click", function (event) {
 
 markedResetBtn.addEventListener("click", function () {
     location.reload(true);
-    // ***
 })

@@ -48,7 +48,8 @@ inputBtn.addEventListener("click", function () {
 randomNrBtn.addEventListener("click", function () {
     const min = 1;
     const max = availableNrArray.length;
-    randomNr = Math.floor((Math.random() * (max - min))) + min; // ***
+    randomNr = createRandomNumber(min, max);
+    
     if (!usedNumbers.includes(randomNr)) {
         randomNrDiv.textContent = randomNr;
         const gridCellsNode = document.querySelectorAll(".gridCell");
