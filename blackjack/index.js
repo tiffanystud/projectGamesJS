@@ -40,10 +40,10 @@ function gameButtonsFunc(trueOrFalse) {
     standBtn.disabled = trueOrFalse;
 
     if (!gameOver) {
-        console.log(betBtn.disabled + " before")
-        betBtn.disabled = false;
-        console.log(betBtn.disabled + " after")
-    }
+        if (userBalance === 0) {
+            betBtn.disabled = true;
+        }
+    } 
 }
 
 function gameStart() {
@@ -54,7 +54,7 @@ function gameStart() {
     dealerPoints = scoreOfCards(dealerCardsArray);
 
     createCardsDOM(userCardsArray, userCardsElem);
-    createCardsDOM(dealerCardsArray, dealerCardsElem, true); 
+    createCardsDOM(dealerCardsArray, dealerCardsElem, true);
 
     userScoreElem.textContent = "Score: " + userPoints;
     dealerScoreElem.textContent = "Score: " + scoreOfVisibleCard(dealerCardsArray);
@@ -220,7 +220,7 @@ function compareScoresFunc() {
     if (userBalance <= 0) {
         messageElem.textContent += " Game over. You have run out of money.";
         betBtn.disabled = true;
-        gameButtonsFunc(true); 
+        gameButtonsFunc(true);
     }
 }
 

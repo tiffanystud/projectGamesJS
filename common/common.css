@@ -6,7 +6,7 @@
 body {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 p {
@@ -16,6 +16,14 @@ p {
 a {
     font-family: Prata;
     font-weight: 600;
+}
+
+.homeLink {
+    margin-top: 20px;
+}
+
+.inputWrapper {
+    gap: 20px;
 }
 
 .commonNav {
@@ -46,6 +54,17 @@ a {
     border-radius: 50%;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapperP {
+    margin: 0;
+}
+
 .gridWrapper {
     display: flex;
     gap: 10px;
@@ -72,9 +91,13 @@ a {
     color: white;
 }
 
+.interactionWrapper {
+    gap: 10px;
+}
 
 #repositoryLink {
     text-align: center;
     margin-top: 300px;
 
 }
+

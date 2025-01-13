@@ -1,6 +1,7 @@
 const bodyElem = document.body;
 
 const homeLink = document.createElement("a");
+homeLink.classList.add("homeLink");
 homeLink.setAttribute("href", "/common/index.html");
 homeLink.innerHTML = "Home";
 homeLink.style.textAlign = "center";
@@ -10,7 +11,6 @@ const interactionWrapper = document.createElement("section");
 interactionWrapper.classList.add("interactionWrapper");
 interactionWrapper.style.display = "flex";
 interactionWrapper.style.flexDirection = "column";
-interactionWrapper.style.gap = "10px";
 bodyElem.appendChild(interactionWrapper);
 
 const inputWrapper = document.createElement("div");
